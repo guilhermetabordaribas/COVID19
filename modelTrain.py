@@ -5,10 +5,10 @@ from sklearn.model_selection import train_test_split
 
 import pickle
 
-pickle_in = open('X.pickle', 'rb')
+pickle_in = open('/storage/guilherme/xrays/X.pickle', 'rb')
 X = pickle.load(pickle_in)
 
-pickle_in = open('y.pickle', 'rb')
+pickle_in = open('/storage/guilherme/xrays/y.pickle', 'rb')
 y = pickle.load(pickle_in)
 
 X = X/255.0
@@ -45,7 +45,7 @@ report = []
 report.append([history.history['accuracy'], history.history['val_accuracy']])
 report.append([test_acc, test_loss])
 
-pickle_out = open('report.pickle', 'wb')
+pickle_out = open('/storage/guilherme/xrays/report.pickle', 'wb')
 pickle.dump(report, pickle_out)
 pickle_out.close()
 
