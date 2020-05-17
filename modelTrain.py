@@ -3,6 +3,8 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D
 from sklearn.model_selection import train_test_split
 
+import numpy as np
+
 import pickle
 
 pickle_in = open('/storage/guilherme/xrays/X.pickle', 'rb')
@@ -35,8 +37,9 @@ model.compile(loss='binary_crossentropy',
              optimizer='adam',
              metrics=['accuracy'])
 
-history = model.fit(X_train, y_train, epochs=1, batch_size=8, 
-                    validation_data=(X_test, y_test))
+# O np.array(y_..) tive que colocar pra rodar na fenix
+history = model.fit(X_train, np.array(y_train), epochs=10, batch_size=10, 
+                    validation_data=(X_test, np.array(y_test) ))
 
 test_loss, test_acc = model.evaluate(X,  y, verbose=2)
 
