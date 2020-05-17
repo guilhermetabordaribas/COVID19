@@ -38,10 +38,10 @@ model.compile(loss='binary_crossentropy',
              metrics=['accuracy'])
 
 # O np.array(y_..) tive que colocar pra rodar na fenix
-history = model.fit(X_train, np.array(y_train), epochs=10, batch_size=10, 
+history = model.fit(X_train, np.array(y_train), epochs=30, batch_size=15, 
                     validation_data=(X_test, np.array(y_test) ))
 
-test_loss, test_acc = model.evaluate(X,  y, verbose=2)
+test_loss, test_acc = model.evaluate(X,  np.array(y), verbose=2)
 
 
 report = []
@@ -53,3 +53,4 @@ pickle.dump(report, pickle_out)
 pickle_out.close()
 
 print(test_loss, test_acc)
+print(history)
