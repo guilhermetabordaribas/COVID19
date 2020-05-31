@@ -2,25 +2,19 @@ import COVID19Py
 import pandas as pd
 import matplotlib.pyplot as plt
 
-plt.style.use('seaborn')
-
 covid19 = COVID19Py.COVID19(data_source="jhu")
 brasil = covid19.getLocationByCountryCode("BR",timelines=True)
 
 index = brasil[0]['timelines']['confirmed']
 index = index['timeline'].keys()
-
 confirm = brasil[0]['timelines']['confirmed']
 confirm = confirm['timeline'].values()
-
 mortes = brasil[0]['timelines']['deaths']
 mortes = mortes['timeline'].values()
 
 df = pd.DataFrame(data = {'confirmados':list(confirm),
                           'mortes': list(mortes)},
-                          index = list(index))
-
-df.index = df.index.str.slice(stop=10)
+                          index = pd.to_datetime(list(index)))
 
 df.plot(title='Vítimas de COVID19 no Brasil - J. Hopkins',
         rot=30)
